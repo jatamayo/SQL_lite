@@ -78,13 +78,48 @@ SELECT * FROM movies WHERE year < 1995 AND genre = 'horror';
 
 
 --********************************************************************************************
+-- OR
+-- Similar to AND, the OR operator can also be used to combine multiple conditions in WHERE, but there is a fundamental difference:
+-- AND operator displays a row if all the conditions are true.
+-- OR operator displays a row if any condition is true.
+SELECT * FROM DT_name WHERE column_name > 2014 OR column_name_2 = 'Action';
 
 
+--********************************************************************************************
+-- ORDER BY
+-- We can sort the results using ORDER BY, either alphabetically or numerically. 
+-- Sorting the results often makes the data more useful and easier to analyze.
+-- DESC is a keyword used in ORDER BY to sort the results in descending order (high to low or Z-A).
+-- ASC is a keyword used in ORDER BY to sort the results in ascending order (low to high or A-Z).
+SELECT * FROM DT_name ORDER BY column_name;
+SELECT * FROM movies WHERE year > 2000 ORDER BY year DESC;
+SELECT * FROM movies WHERE year > 2000 ORDER BY year ASC;
+
 
 --********************************************************************************************
+-- LIMIT
+-- We’ve been working with a fairly small table (fewer than 250 rows), but most SQL tables contain hundreds of thousands of records. In those situations, it becomes important to cap the number of rows in the result.
+-- For instance, imagine that we just want to see a few examples of records.
+SELECT * FROM DT_name LIMIT 10;
+
+
 --********************************************************************************************
---********************************************************************************************
---********************************************************************************************
---********************************************************************************************
---********************************************************************************************
---********************************************************************************************
+-- CASE
+-- A CASE statement allows us to create different outputs (usually in the SELECT statement). It is SQL’s way of handling if-then logic.
+SELECT name,
+    CASE
+        WHEN imdb_rating > 8 THEN 'Fantastic'
+        WHEN imdb_rating > 6 THEN 'Poorly Received'
+        ELSE 'Avoid at All Costs'
+    END
+FROM movies;
+
+--
+SELECT name,
+ CASE
+  WHEN imdb_rating > 8 THEN 'Fantastic'
+  WHEN imdb_rating > 6 THEN 'Poorly Received'
+  ELSE 'Avoid at All Costs'
+ END AS 'Review'
+FROM movies;
+
